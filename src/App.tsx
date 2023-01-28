@@ -6,7 +6,7 @@ function App() {
   return (
     <AppContainer >
       <Header><Title>TIC-TAC-TOE</Title></Header>
-      <Board  />
+      <Board  boardSize={3}/>
     </AppContainer>
   );
 }
