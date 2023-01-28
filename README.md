@@ -14,6 +14,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 ## Tech Stack 💻
 
 - [React.js](https://reactjs.org/)
+- [TypeScript](https://www.typescriptlang.org/)
 - [Styled Components](https://styled-components.com/)
 
 ## Screenshots
