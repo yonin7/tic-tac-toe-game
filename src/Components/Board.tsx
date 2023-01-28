@@ -5,10 +5,12 @@ import crossImg from "../Assets/cross.png"
 
 import { Container, Grid,Square } from "./BoardStyles";
 
-const Board:React.FC<{boardSize:number}> = ({boardSize}) => {
+const Board:React.FC<{boardSize:number,resultHandler:(setIsWinner:boolean,setWinnerName:string|null,setBoardSize:number|null)=>void}> 
+= ({boardSize,resultHandler}) => 
+{
+
   const [boardGrid,setBoardGrid] = useState<(string[]|null[])[]>([])
   const [userTurn, setUserTurn] = useState("cross");
-  const [isWinner, setIsWinner] = useState(false);
 
   useEffect(()=>{
       const boardTemplate =[]
@@ -54,7 +56,6 @@ const Board:React.FC<{boardSize:number}> = ({boardSize}) => {
     let row = parseInt(myArray[0]);
     let column = parseInt(myArray[1]);
     let tempArr:(string[]|null[])[] = [...boardGrid];
-    console.log(tempArr);
     
     if (tempArr[row][column]===null) {
       tempArr[row][column] = userTurn;
@@ -63,7 +64,7 @@ const Board:React.FC<{boardSize:number}> = ({boardSize}) => {
 
     const checkingWinning = winnerCombinationChecker(row, column);
     if (checkingWinning) {
-      setIsWinner(true);
+        resultHandler(true,userTurn,null);
       return;
     }
 
@@ -83,8 +84,9 @@ const Board:React.FC<{boardSize:number}> = ({boardSize}) => {
     }
     setBoardGrid(boardTemplate);
     setUserTurn("cross");
-    setIsWinner(false);
+    resultHandler(false,null,null);
   };
+
   const boardPainter = () => {
     let hoverImg;
     return boardGrid.map((row:any, rowIndex:number) => {
@@ -109,7 +111,6 @@ const Board:React.FC<{boardSize:number}> = ({boardSize}) => {
     <Container>
         <Grid size={boardSize}>{boardPainter()}</Grid>
         <button onClick={restartHandler}>RESTART</button>;
-
     </Container>
   )
 }
