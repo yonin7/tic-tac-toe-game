@@ -15,6 +15,16 @@ export const Container = styled.div`
   width: 100%;
   height: 100%;
 `;
+export const BoardSizeContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color:#fff;
+`;
+export const BoardSizeTitle = styled.h1`
+
+`;
 export const BoardSizeInput = styled.input.attrs((props) => ({
     type: "number",
   }))<boardSizeInputProps>`
